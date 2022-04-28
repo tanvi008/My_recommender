@@ -29,10 +29,12 @@ def recommender(movie_name,data=x, model=model_knn, n_recommendations=20):
     print('----------------Your Recommendations are----------------')
     distances , indices=model.kneighbors(data[idx], n_neighbors = n_recommendations)
     for i in indices:
-        return_df = (df_movies['title'][i].where(i!=idx))
+        return_df = (df_movies['title'][i])
+        
+    df = pd.DataFrame({'Title':return_df}).iloc[1:,:]
 
-    return return_df
+    return df
 
 
 
-print(recommender("Avatar"))
+recommender("Avatar")
